@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+  <main class="mt-5 pt-4">
+    <div class="container dark-grey-text mt-5">
+
+      <!--Grid row-->
+      <div class="row wow fadeIn">
+
+        <!--Grid column-->
+        <div class="col-md-6 mb-4">
+          <img src="{{ object.image.url }}" class="img-fluid" alt="">
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-md-6 mb-4">
+
+          <!--Content-->
+          <div class="p-4">
+
+            <div class="mb-3">
+              <a href="">
+                <!-- <span class="badge purple mr-1">{{ object.get_category_display }}</span> -->
+                <span class="badge mr-1" style="background-color: #b20b0b;">{{ object.title }}</span>
+              </a>
+            </div>
+
+            <p class="lead">
+              {% if object.discount_price %}
+                <span class="mr-1">
+                  <del>N{{ object.price }}</del>
+                </span>
+                <span>N{{ object.discount_price }}</span>
+              {% else %}
+               <span>N{{ object.price }}</span>
+              {% endif %}
+            </p>
+
+            <p class="lead font-weight-bold">Description</p>
+
+            <p>{{ object.description }}</p>
+            
+            <!-- <p>
+              <small>[Fish / Beef / Chicken / Turkey]</small>
+            </p> -->
+
+            {% comment %} <form class="d-flex justify-content-left">
+              <!-- Default input -->
+              <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px">
+              <button class="btn btn-primary btn-md my-0 p" type="submit">
+                Add to cart
+                <i class="fas fa-shopping-cart ml-1"></i>
+              </button>
+
+            </form> {% endcomment %}
+            <a href="{{ object.get_add_to_cart_url }}" class="btn btn-primary btn-md my-0 p">
+              Add to cart
+              <i class="fas fa-shopping-cart ml-1"></i>
+            </a>
+            <a href="{{ object.get_remove_from_cart_url }}" class="btn btn-danger btn-md my-0 p">
+              Remove from cart
+            </a>
+
+          </div>
+          <!--Content-->
+
+        </div>
+        <!--Grid column-->
+
+      </div>
+      <!--Grid row-->
+
+    </div>
+    <script>
+    </script>
+  </main>
+
+{% endblock content %}

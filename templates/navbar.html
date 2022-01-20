@@ -1,0 +1,67 @@
+{% load cart_template_tags %}
+{% load static %}
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+    <div class="container">
+      
+      <!-- Collapse -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Links -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <!-- Right -->
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link waves-effect" href="/">
+              <span class="clearfix d-none d-sm-inline-block"> Home </span>
+            </a>
+          </li>
+        </ul>
+
+        <!-- Left -->
+        <ul class="navbar-nav nav-flex-icons">
+          {% if request.user.is_authenticated %}
+          <li class="nav-item">
+            <a href="{% url 'core:order-summary' %}" class="nav-link waves-effect">
+              <span class="badge red z-depth-1 mr-1"> {{ request.user|cart_item_count }} </span>
+              <i class="fas fa-shopping-cart"></i>
+              <span class="clearfix d-none d-sm-inline-block"> Cart </span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link waves-effect" href="{% url 'account_logout' %}">
+              <i class="fas fa-user-circle"></i>
+              <span class="clearfix d-none d-sm-inline-block"> Logout </span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link waves-effect" href="https://l.facebook.com/l.php?u=https%3A%2F%2Fwa.me%2Fmessage%2FCQKJPRAFGNENK1%3Ffbclid%3DIwAR1m3EXmtpkX4JMOtKmC7MC_xM2amIhSYPsDIbRLL7lYqkSg48szl-RHPAA&h=AT3gHXMTV1xBUeIzbAWvk5L2P85qsQpP-TTigJFTPFUMMiirDo8hT6j-DYNWf1sTTDjyABJpmbPmSI-2aFK_8XXPrOn-RXhwzVQMvUu5h9UOC6wgq8MRKB4WbT_ntZZpg6cQGA">
+            <i class="fas fa-info"></i>
+            <span class="clearfix d-none d-sm-inline-block">
+              Support
+            </span>
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link waves-effect" href="{% url 'account_login' %}">
+              <i class="fas fa-user-circle"></i>
+              <span class="clearfix d-none d-sm-inline-block"> Login </span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link waves-effect" href="{% url 'account_signup' %}">
+              <span class="clearfix d-none d-sm-inline-block"> Signup </span>
+            </a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+
+    </div>
+  </nav>
